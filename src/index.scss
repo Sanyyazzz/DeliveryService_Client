@@ -40,6 +40,11 @@ header{
         margin-right: 20px;
       }
     }
+
+    button{
+      background-color: rgba(255, 0, 0, 0);
+      border: 0;
+    }
   }
 }
 
@@ -95,7 +100,7 @@ header{
         flex-direction: column;
         align-items: center;
         width: 250px;
-        height: 200px;
+        height: 210px;
         border: 1px solid #e3e3e3;
         border-radius: 20px;
         margin-right: 14px;
@@ -112,20 +117,31 @@ header{
         }
 
         .bottomPart{
-          height: 80px;
+          width: 100%;
+          height: 70px;
           display: flex;
-          flex-direction: column;
-          margin: 10px;
+          justify-content: space-between;
 
           .price{
-            padding: 0px 10px;
+            width: 60px;
+            margin-right: 5px;
+            height: 100%;
+            flex-grow: 0;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
+            align-items: center;
           }
 
           p{
-            margin: 0;
-            margin-bottom: 5px;
+            height: 100%;
+            width: 150px;
+            margin: 5px 5px;
+          }
+
+          button{
+            background: none;
+            border: 0;
           }
         }
       }
@@ -138,7 +154,7 @@ header{
   flex-direction: column;
   position: fixed;
   width: 300px;
-  height: 100%;
+  height: 100vh;
   background-color: #ffffff;
   border: 1px solid #d7d7d7;
   top: 100px;
@@ -180,5 +196,46 @@ header{
         border: none;
       }
     }
+  }
+
+  .bottomCart{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+    button{
+      width: 100px;
+      height: 40px;
+      margin-top: 10px;
+      background-color: #52e060;
+      align-self: center;
+      border: 0;
+      border-radius: 10%;
+    }
+  }
+}
+
+.account{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 1000px;
+  padding-top:110px;
+  margin: 0 auto;
+  background-color: white;
+
+  .accountNavigation{
+      display: flex;
+
+      li{
+        list-style-type: none;
+        margin-right: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #cccccc;
+
+        .active{
+          border-bottom: 1px solid greenyellow;
+        }
+      }
   }
 }
