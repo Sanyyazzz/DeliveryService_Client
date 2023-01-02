@@ -1,13 +1,13 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
+import {showHideCartTab} from "../store/reducers/cartSlice";
 
-type HeaderInput = {
-    isCartOpen: boolean
-    setIsCartOpen: Function
-    totalPrice: number
-}
+const Header = () => {
 
-const Header = ({isCartOpen, setIsCartOpen, totalPrice} : HeaderInput) => {
+        const cart = useAppSelector((store)=>store.cart)
+        const dispatch = useAppDispatch();
+
         return(
             <header>
                 <div className="wrapper">
@@ -18,12 +18,9 @@ const Header = ({isCartOpen, setIsCartOpen, totalPrice} : HeaderInput) => {
                         <h3>Delivery Service</h3>
                     </div>
                     <div className="rightSide">
-                        <p>{totalPrice.toFixed(2)} ₴</p>
-                        <button onClick={
-                            isCartOpen ?
-                                ()=>setIsCartOpen(false)
-                                :
-                                ()=>setIsCartOpen(true)
+                        <p>{cart.totalPrice.toFixed(2)} ₴</p>
+                        <button onClick={()=>
+                            dispatch(showHideCartTab())
                         }>
                             <img src={"/icon/free-icon-cart-7528413.png"} alt='cart' width={30} height={30} />
                         </button>

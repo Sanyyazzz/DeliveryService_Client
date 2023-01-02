@@ -1,4 +1,4 @@
-import {ProductsTypeInCart} from "../types/productsType";
+import {ProductPointInCartType} from "../types/productsType";
 import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
 import {decrementItemInCart, deleteAllItem, incrementItemInCart} from "../store/reducers/cartSlice";
 import React, {ReactElement, useEffect, useState} from "react";
@@ -10,12 +10,12 @@ import {AddressType, UserType} from "../types/userType";
 const ConfirmationAnOrder = () => {
 
     const user : UserType = useAppSelector((store)=>store.user)
-    const productsInCart : ProductsTypeInCart[] = useAppSelector((store) => store.cartItems);
+    const cart = useAppSelector((store) => store.cart);
     const dispatch = useAppDispatch();
 
     const [address, setAddress] = useState("");
 
-    const elementsInCart : ReactElement[] | any = productsInCart.map((p)=>{
+    const elementsInCart : ReactElement[] | any = cart.orderPoints.map((p)=>{
         return <ItemInConfirmOrder key={p.id} productInCart={p}/>
     })
 
@@ -35,11 +35,17 @@ const ConfirmationAnOrder = () => {
     return(
         <div className="confirmationOrder">
             <div className="contentConf">
+                <NavLink to={"/maincontent"}>
+                    <div className="return">
+                        <img src={"/icon/free-icon-left-arrow-137518.png"} width={20} />
+                        До покупок
+                    </div>
+                </NavLink>
                 <h2>Ваше замовлення</h2>
                 <ul className="list">
                     {elementsInCart}
                 </ul>
-                Всього до сплати: <b></b>
+                Всього до сплати: <b>{cart.totalPrice} грн.</b>
                 <h2>Оберіть адресу</h2>
                 <div className="chooseAddress">
                     <div className="inputAddress">

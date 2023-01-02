@@ -1,10 +1,10 @@
 import React from "react";
-import {ProductsTypeInCart} from "../types/productsType";
+import {ProductPointInCartType} from "../types/productsType";
 import {useAppDispatch} from "../store/hooks/hooks";
 import {decrementItemInCart, deleteItem, incrementItemInCart} from "../store/reducers/cartSlice";
 
 type PropsType = {
-    productInCart : ProductsTypeInCart
+    productInCart : ProductPointInCartType
 }
 
 const ItemInConfirmOrder= (props : PropsType) => {

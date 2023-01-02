@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {ProductsType, ProductsTypeInCart} from "../../types/productsType";
+import {ProductsType, ProductPointInCartType} from "../../types/productsType";
 import {AddressType, UserType} from "../../types/userType";
 
 const initialState : UserType = {

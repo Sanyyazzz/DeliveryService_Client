@@ -1,5 +1,5 @@
 import React, {ChangeEventHandler, useState} from "react";
-import {ProductsTypeInCart} from "../types/productsType";
+import {ProductPointInCartType} from "../types/productsType";
 import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
 import {AddressType, UserType} from "../types/userType";
 import {addAddressUser, deleteAddressUser, saveUser} from "../store/reducers/userSlice";

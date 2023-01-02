@@ -1,3 +1,9 @@
+export type CartType = {
+    isOpenTabCart: boolean;
+    totalPrice: number;
+    orderPoints: ProductPointInCartType[];
+}
+
 export type ProductsType = {
     id: number
     imageURL: string,
@@ -6,7 +12,7 @@ export type ProductsType = {
     price: number
 }
 
-export type ProductsTypeInCart = {
+export type ProductPointInCartType = {
     id: number
     product: ProductsType
     count: number
