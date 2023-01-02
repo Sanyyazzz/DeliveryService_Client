@@ -1,7 +1,7 @@
 
 const AccountOrdersList = () => {
     return(
-        <div>
+        <div className="accountContent" >
             <ul>
                 <li>1234</li>
                 <li>1234</li>

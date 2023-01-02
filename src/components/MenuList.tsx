@@ -1,6 +1,6 @@
 import React, {ReactElement} from "react";
 import ProductCard from "./ProductCard";
-import {ProductsType, ProductsTypeInCart} from "../types/productsType";
+import {ProductsType} from "../types/productsType";
 import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
 import {addItemToCart} from "../store/reducers/cartSlice";
 

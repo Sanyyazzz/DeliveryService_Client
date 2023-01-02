@@ -8,9 +8,6 @@ export type ProductsType = {
 
 export type ProductsTypeInCart = {
     id: number
-    imageURL: string,
-    productTitle: string,
-    productWeight: number,
-    price: number,
+    product: ProductsType
     count: number
 }

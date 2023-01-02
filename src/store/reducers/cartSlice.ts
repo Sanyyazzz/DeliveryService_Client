@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
                 }
             })
 
-            if(!isItemInCart) state.push({...action.payload, count:1})
+            if(!isItemInCart) state.push({id:action.payload.id, product:action.payload, count:1})
         },
 
         incrementItemInCart: (state,action:PayloadAction<ProductsTypeInCart>) => {
@@ -32,11 +32,20 @@ export const cartSlice = createSlice({
             }else{
                 state[index].count--;
             };
-        }
+        },
+
+        deleteAllItem: (state) => {
+            return [];
+        },
+
+        deleteItem: (state,action:PayloadAction<ProductsTypeInCart>) => {
+            let index = state.findIndex((p)=>p.id == action.payload.id);
+            state.splice(index, 1)
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addItemToCart, incrementItemInCart, decrementItemInCart } = cartSlice.actions
+export const { addItemToCart, incrementItemInCart, decrementItemInCart, deleteAllItem, deleteItem } = cartSlice.actions
 
 export default cartSlice.reducer

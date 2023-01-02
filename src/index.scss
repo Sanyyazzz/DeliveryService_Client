@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #efefef;
+  background-color: #ececec;
   color: #3b3b3b;
   font-family: 'Hanken-Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -158,8 +158,9 @@ header{
   background-color: #ffffff;
   border: 1px solid #d7d7d7;
   top: 100px;
-  right: 0;
+  right: -350px;
   padding: 20px;
+  transition: 0.5s;
 
   ul{
     margin: 0;
@@ -187,21 +188,30 @@ header{
     .buttons{
       display: flex;
       justify-content: space-between;
-
-      button{
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background-color: #ffb700;
-        border: none;
-      }
     }
+
+    button{
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: #ffb700;
+      border: none;
+    }
+  }
+
+  .topCart{
+    display: flex;
+    justify-content: space-between;
   }
 
   .bottomCart{
     display: flex;
     flex-direction: column;
     margin-top: 10px;
+
+    a{
+      align-self: center;
+    }
 
     button{
       width: 100px;
@@ -210,9 +220,18 @@ header{
       background-color: #52e060;
       align-self: center;
       border: 0;
-      border-radius: 10%;
+      border-radius: 30px;
     }
   }
+
+  button{
+    background-color: transparent;
+    border:0
+  }
+}
+
+.cartOpen{
+  right: 0;
 }
 
 .account{
@@ -237,5 +256,174 @@ header{
           border-bottom: 1px solid greenyellow;
         }
       }
+  }
+
+  .accountContent{
+    margin: 20px 50px;
+  }
+
+  .contactInfo{
+
+    input, select{
+      padding: 10px 10px;
+      width: 200px;
+      border: 1px solid #c2c2c2;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    button{
+      width: auto;
+      height: auto;
+      padding: 10px 10px;
+      background-color: #52e060;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    .address{
+      width: 30%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      button{
+        width: auto;
+        height: 20px;
+        padding: 5px 5px;
+        border-radius: 8px;
+        background-color: #c2c2c2;
+      }
+    }
+
+    ul{
+      padding: 0;
+    }
+  }
+}
+
+.confirmationOrder{
+  width: 80%;
+  height: 100%;
+  padding:150px 0 150px 0;
+  margin: 0 auto;
+  background-color: white;
+
+  .contentConf{
+    margin: 0 70px;
+
+    h2{
+      margin-bottom: 40px;
+    }
+
+    .list{
+      margin-bottom: 40px;
+
+      li{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #e0e0e0;
+
+        .left{
+          img{
+            margin-right: 20px;
+          }
+
+          p{
+            margin-right: 10px;
+          }
+
+          .count{
+            font-size: 22px;
+          }
+
+          display: flex;
+          align-items: center;
+        }
+
+        .right{
+          display: flex;
+          align-items: center;
+
+          .price{
+            margin-right: 20px;
+          }
+
+          button{
+            width: 35px;
+            height: 35px;
+            padding: 10px 10px;
+            border-radius: 50%;
+            background-color: #ffb700;
+            border: none;
+            margin-right: 5px;
+          }
+
+          .deleteButton{
+            margin-left: 10px;
+            background-color: rgba(255, 183, 0, 0);
+          }
+        }
+      }
+    }
+
+    .chooseAddress{
+      margin-bottom: 40px;
+
+      .inputAddress{
+
+        display: flex;
+
+        input{
+          width: 100%;
+          font-size: 22px;
+          padding: 10px;
+          border: 1px solid #cbcbcb;
+          border-radius: 10px 0px 0px 10px;
+        }
+
+        button{
+          width: 10%;
+          border: 1px solid #cbcbcb;
+          border-radius: 0px 10px 10px 0px;
+          background-color: #13dc98;
+        }
+      }
+
+      .readyAddress{
+        li{
+          display: flex;
+          justify-content: space-between;
+          list-style-type: none;
+          font-size: 20px;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-bottom: 1px solid #e8e8e8;
+
+          button{
+            border: 1px solid #cbcbcb;
+            border-radius: 10px;
+            background-color: #13dc98;
+          }
+        }
+      }
+    }
+
+    .contactInfo{
+      margin-left: 20px;
+      font-size: 22px;
+    }
+
+    #confirmOrder{
+      width:30%;
+      height: 40px;
+      margin-top: 30px;
+      border: 1px solid #cbcbcb;
+      border-radius: 10px;
+      background-color: #ffb700;
+    }
   }
 }

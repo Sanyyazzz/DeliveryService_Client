@@ -13,8 +13,8 @@ const ItemInCart = (props : PropsType) => {
         <li key={props.productInCart.id}>
             <div className="info">
                 <b>{props.productInCart.count}x</b>
-                {props.productInCart.productTitle} ({props.productInCart.productWeight}г)
-                <b>{(props.productInCart.price * props.productInCart.count).toFixed(2)} ₴</b>
+                {props.productInCart.product.productTitle} ({props.productInCart.product.productWeight}г)
+                <b>{(props.productInCart.product.price * props.productInCart.count).toFixed(2)} ₴</b>
             </div>
             <div className="buttons">
                 <button onClick={()=>props.decrement(props.productInCart)}><img src={"/icon/free-icon-font-minus-small-4338830.png"} width={10} /></button>

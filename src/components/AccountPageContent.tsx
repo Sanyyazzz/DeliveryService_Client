@@ -24,7 +24,6 @@ const AccountPageContent = ({activeTab}:PropsAccountPage) => {
         <div>
             {activeTabContent}
         </div>
-
     )
 }
 
