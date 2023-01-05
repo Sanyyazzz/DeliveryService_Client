@@ -1,12 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {ProductsType, ProductPointInCartType} from "../../types/productsType";
-import {AddressType, UserType} from "../../types/userType";
+import {AddressType, OrderStatus, UserType} from "../../types/userType";
 
 const initialState : UserType = {
     id:0,
     name:"Oleksandr",
     phoneNumber:"+380950137179",
-    address:[{id:0, address:"pr.Lisnuy 9"}, {id:1, address:"вул. Дарбіняна 10"}]
+    address:[{id:0, address:"pr.Lisnuy 9"}, {id:1, address:"вул. Дарбіняна 10"}],
+    orderHistory: [{id:0, totalPrice: 450, status: OrderStatus.Ordered}]
 };
 
 export const userSlice = createSlice({
@@ -33,10 +33,14 @@ export const userSlice = createSlice({
             let index = state.address.findIndex((p)=>p.id == action.payload.id)
             state.address.splice(index, 1)
         },
+
+        confirmOrder: (state) => {
+
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addAddressUser, deleteAddressUser, saveUser } = userSlice.actions
+export const { addAddressUser, deleteAddressUser, saveUser, confirmOrder } = userSlice.actions
 
 export default userSlice.reducer

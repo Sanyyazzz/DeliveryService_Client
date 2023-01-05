@@ -11,7 +11,7 @@ const ProductCard = (props : PropsType) => {
     return(
         <div className="card">
             <div className="topPart">
-                <img src={props.product.imageURL} width={140} />
+                <img src={props.product.imageURL} />
             </div>
             <div className="bottomPart">
                 <p>{props.product.productTitle} ({props.product.productWeight}г)</p>

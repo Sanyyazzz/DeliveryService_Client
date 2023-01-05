@@ -3,9 +3,10 @@ import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
 import {decrementItemInCart, deleteAllItem, incrementItemInCart} from "../store/reducers/cartSlice";
 import React, {ReactElement, useEffect, useState} from "react";
 import ItemInCart from "../components/ItemInCart";
-import {NavLink} from "react-router-dom";
+import {NavLink, redirect} from "react-router-dom";
 import ItemInConfirmOrder from "../components/ItemInConfirmOrder";
 import {AddressType, UserType} from "../types/userType";
+import {confirmOrder} from "../store/reducers/userSlice";
 
 const ConfirmationAnOrder = () => {
 
@@ -28,9 +29,9 @@ const ConfirmationAnOrder = () => {
         )
     })
 
-    useEffect(()=>{
-
-    })
+    const onConfirmOrder = () => {
+        dispatch(confirmOrder())
+    }
 
     return(
         <div className="confirmationOrder">
@@ -45,7 +46,7 @@ const ConfirmationAnOrder = () => {
                 <ul className="list">
                     {elementsInCart}
                 </ul>
-                Всього до сплати: <b>{cart.totalPrice} грн.</b>
+                <div id="price">Всього до сплати: <b>{cart.totalPrice} грн.</b></div>
                 <h2>Оберіть адресу</h2>
                 <div className="chooseAddress">
                     <div className="inputAddress">
@@ -63,7 +64,11 @@ const ConfirmationAnOrder = () => {
                     <p>Ім'я: {user.name}</p>
                     <p>Номер телефона: {user.phoneNumber}</p>
                 </div>
-                <button id="confirmOrder">Підтвердити замовлення</button>
+                <NavLink to="/maincontent">
+                    <button id="confirmOrder" onClick={()=>onConfirmOrder()}>
+                        Підтвердити замовлення
+                    </button>
+                </NavLink>
             </div>
         </div>
     )

@@ -35,7 +35,8 @@ const AccountContactInfo = () => {
             id:userInfo.id,
             name: name,
             phoneNumber: phoneNum,
-            address: userInfo.address
+            address: userInfo.address,
+            orderHistory: userInfo.orderHistory
         }))
     }
 

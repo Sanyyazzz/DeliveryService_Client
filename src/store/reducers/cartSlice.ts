@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit'
 import {ProductsType, ProductPointInCartType, CartType} from "../../types/productsType";
 
 const initialState : CartType = {
@@ -20,15 +20,14 @@ export const cartSlice = createSlice({
                     p.count++;
                 }
             })
-
             if(!isItemInCart) state.orderPoints.push({id:action.payload.id, product:action.payload, count:1})
-            state.totalPrice += action.payload.price;
+            state.totalPrice = countTotalPrice(state.orderPoints);
         },
 
         incrementItemInCart: (state,action:PayloadAction<ProductPointInCartType>) => {
             let index = state.orderPoints.findIndex((p)=>p.id == action.payload.id);
             state.orderPoints[index].count++;
-            state.totalPrice += action.payload.product.price;
+            state.totalPrice = countTotalPrice(state.orderPoints);
         },
 
         decrementItemInCart: (state,action:PayloadAction<ProductPointInCartType>) => {
@@ -39,7 +38,7 @@ export const cartSlice = createSlice({
                 state.orderPoints[index].count--;
             };
 
-            state.totalPrice -= action.payload.product.price;
+            state.totalPrice = countTotalPrice(state.orderPoints);
         },
 
         deleteAllItem: (state) => {
@@ -51,12 +50,18 @@ export const cartSlice = createSlice({
             let index = state.orderPoints.findIndex((p)=>p.id == action.payload.id);
             let price = state.orderPoints[index].count * state.orderPoints[index].product.price;
             state.orderPoints.splice(index, 1);
-            state.totalPrice -= price;
+            state.totalPrice = countTotalPrice(state.orderPoints);
         },
 
         showHideCartTab: (state) => {state.isOpenTabCart = !state.isOpenTabCart}
     },
 })
+
+const countTotalPrice = (orderPoints: ProductPointInCartType[]) => {
+    let totalPrice = 0;
+    orderPoints.forEach((p)=>totalPrice+=p.count*p.product.price)
+    return totalPrice;
+}
 
 // Action creators are generated for each case reducer function
 export const { addItemToCart, incrementItemInCart, decrementItemInCart, deleteAllItem, deleteItem, showHideCartTab } = cartSlice.actions
