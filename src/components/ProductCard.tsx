@@ -11,10 +11,10 @@ const ProductCard = (props : PropsType) => {
     return(
         <div className="card">
             <div className="topPart">
-                <img src={props.product.imageURL} />
+                <img src={props.product.image} />
             </div>
             <div className="bottomPart">
-                <p>{props.product.productTitle} ({props.product.productWeight}г)</p>
+                <p>{props.product.productName} ({props.product.weight}г)</p>
                 <div className="price">
                     <b>{props.product.price} ₴</b>
                     <button onClick={()=>props.addItemToCart(props.product)}>

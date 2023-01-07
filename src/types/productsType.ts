@@ -6,14 +6,20 @@ export type CartType = {
 
 export type ProductsType = {
     id: number
-    imageURL: string,
-    productTitle: string,
-    productWeight: number,
-    price: number
+    image: string,
+    productName: string,
+    weight: number,
+    price: number,
+    categoryId: number
 }
 
 export type ProductPointInCartType = {
     id: number
     product: ProductsType
+    count: number
+}
+
+export type ProductInInputOrder = {
+    productId: number,
     count: number
 }

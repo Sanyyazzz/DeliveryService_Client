@@ -6,15 +6,18 @@ import ItemInCart from "../components/ItemInCart";
 import {NavLink, redirect} from "react-router-dom";
 import ItemInConfirmOrder from "../components/ItemInConfirmOrder";
 import {AddressType, UserType} from "../types/userType";
-import {confirmOrder} from "../store/reducers/userSlice";
+import {createOrder} from "../store/actions/orderTypeBrige";
 
 const ConfirmationAnOrder = () => {
-
     const user : UserType = useAppSelector((store)=>store.user)
     const cart = useAppSelector((store) => store.cart);
     const dispatch = useAppDispatch();
 
     const [address, setAddress] = useState("");
+
+    const onConfirmOrder = () => {
+        dispatch(createOrder(user.id, cart, address))
+    }
 
     const elementsInCart : ReactElement[] | any = cart.orderPoints.map((p)=>{
         return <ItemInConfirmOrder key={p.id} productInCart={p}/>
@@ -28,10 +31,6 @@ const ConfirmationAnOrder = () => {
             </li>
         )
     })
-
-    const onConfirmOrder = () => {
-        dispatch(confirmOrder())
-    }
 
     return(
         <div className="confirmationOrder">
@@ -50,7 +49,7 @@ const ConfirmationAnOrder = () => {
                 <h2>Оберіть адресу</h2>
                 <div className="chooseAddress">
                     <div className="inputAddress">
-                        <input type="text" defaultValue={address} />
+                        <input type="text" defaultValue={address} onChange={(address)=>setAddress(address.target.value)} />
                         <button><img src={"/icon/geo.png"} width={30} /></button>
                     </div>
                     <div className="readyAddress">
@@ -65,7 +64,7 @@ const ConfirmationAnOrder = () => {
                     <p>Номер телефона: {user.phoneNumber}</p>
                 </div>
                 <NavLink to="/maincontent">
-                    <button id="confirmOrder" onClick={()=>onConfirmOrder()}>
+                    <button id="confirmOrder" onClick={onConfirmOrder}>
                         Підтвердити замовлення
                     </button>
                 </NavLink>

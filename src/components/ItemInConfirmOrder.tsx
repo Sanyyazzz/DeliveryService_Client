@@ -14,8 +14,8 @@ const ItemInConfirmOrder= (props : PropsType) => {
     return(
         <li key={props.productInCart.product.id}>
             <div className="left">
-                <img src={props.productInCart.product.imageURL} width="100px"/>
-                <p>{props.productInCart.product.productTitle} ({props.productInCart.product.productWeight}г)</p>
+                <img src={props.productInCart.product.image} width="100px"/>
+                <p>{props.productInCart.product.productName} ({props.productInCart.product.weight}г)</p>
                 <b className="count">{props.productInCart.count}x</b>
             </div>
             <div className="right">

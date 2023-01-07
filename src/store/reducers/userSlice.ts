@@ -14,6 +14,10 @@ export const userSlice = createSlice({
     initialState: initialState,
 
     reducers: {
+        setUser: (state, action: PayloadAction<UserType>) => {
+            return action.payload;
+        },
+
         saveUser: (state, action: PayloadAction<UserType>) => {
             return action.payload;
         },
@@ -34,13 +38,13 @@ export const userSlice = createSlice({
             state.address.splice(index, 1)
         },
 
-        confirmOrder: (state) => {
+        addOrderToHistory: (state, action) => {
 
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addAddressUser, deleteAddressUser, saveUser, confirmOrder } = userSlice.actions
+export const { setUser, addAddressUser, deleteAddressUser, saveUser, addOrderToHistory } = userSlice.actions
 
 export default userSlice.reducer

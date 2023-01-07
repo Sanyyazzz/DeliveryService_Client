@@ -13,7 +13,7 @@ const ItemInCart = (props : PropsType) => {
         <li key={props.productInCart.id}>
             <div className="info">
                 <b>{props.productInCart.count}x</b>
-                {props.productInCart.product.productTitle} ({props.productInCart.product.productWeight}г)
+                {props.productInCart.product.productName} ({props.productInCart.product.weight}г)
                 <b>{(props.productInCart.product.price * props.productInCart.count).toFixed(2)} ₴</b>
             </div>
             <div className="buttons">

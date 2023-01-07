@@ -1,8 +1,9 @@
-import React, {ReactElement} from "react";
+import React, {ReactElement, useEffect} from "react";
 import ProductCard from "./ProductCard";
 import {ProductsType} from "../types/productsType";
 import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
 import {addItemToCart} from "../store/reducers/cartSlice";
+import {getProductByCategory} from "../store/actions/productRequest";
 
 const MenuList = () => {
 
@@ -23,7 +24,7 @@ const MenuList = () => {
             <h3>Всі пункти меню</h3>
             <h2>...</h2>
             <div className="menuItems">
-                {listOfProduct}
+                {listOfProduct.length != 0 ? listOfProduct : <div>Немає пунктів цієї категорії</div>}
             </div>
         </div>
     )
