@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './index.scss';
 import Header from "./components/Header";
 import MainContent from "./pages/MainContent";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 import {Route, Router, Routes} from "react-router-dom";
 import PersonalAccount from "./pages/PersonalAccount";
 import ConfirmationAnOrder from "./pages/ConfirmationAnOrder";

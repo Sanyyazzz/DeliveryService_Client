@@ -213,17 +213,19 @@ header{
   flex-direction: column;
   position: fixed;
   width: 300px;
-  height: 100vh;
+  height: 100%;
   background-color: #ffffff;
   border: 1px solid #d7d7d7;
   top: 100px;
   right: -350px;
-  padding: 20px;
+  padding: 0 20px;
   transition: 0.5s;
 
   ul{
+    max-height: 50vh;
     margin: 0;
-    padding: 0;
+    padding: 10px 10px;
+    overflow-y: auto;
   }
 
   li{
@@ -318,17 +320,19 @@ header{
   }
 
   .accountContent{
-    margin: 20px 50px;
+    margin: 0 auto;
   }
 
   .contactInfo{
+    width: 40%;
 
     input, select{
+      width: 80%;
       padding: 10px 10px;
-      width: 200px;
       border: 1px solid #c2c2c2;
       border-radius: 10px;
       margin-bottom: 15px;
+      margin-top: 10px;
     }
 
     button{
@@ -341,22 +345,50 @@ header{
     }
 
     .address{
-      width: 30%;
+      width: 90%;
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
 
       button{
-        width: auto;
+        width: 20px;
         height: 20px;
         padding: 5px 5px;
-        border-radius: 8px;
+        border-radius: 100%;
         background-color: #c2c2c2;
       }
     }
 
     ul{
       padding: 0;
+    }
+  }
+
+  .orderList{
+    width: 80%;
+    margin-top: 20px;
+
+    table{
+      width: 100%;
+      border-collapse:collapse;
+
+      th{
+        text-align: left;
+      }
+
+      td{
+        text-align: left;
+        padding: 20px 0;
+        border-bottom: 1px solid #d2d2d2;
+      }
+
+      #cancel{
+        color: #ffffff;
+        width: 100%;
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+        background-color: #ff5454;
+      }
     }
   }
 }
@@ -508,4 +540,8 @@ header{
       background-color: #ffb700;
     }
   }
+}
+
+.disable{
+  button: disable;
 }

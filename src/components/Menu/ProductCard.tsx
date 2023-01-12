@@ -1,5 +1,5 @@
 import React from "react";
-import {ProductsType} from "../types/productsType";
+import {ProductsType} from "../../types/productsType";
 
 type PropsType = {
     product: ProductsType

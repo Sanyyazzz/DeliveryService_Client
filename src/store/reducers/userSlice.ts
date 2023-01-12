@@ -3,10 +3,10 @@ import {AddressType, OrderStatus, UserType} from "../../types/userType";
 
 const initialState : UserType = {
     id:0,
-    name:"Oleksandr",
-    phoneNumber:"+380950137179",
-    address:[{id:0, address:"pr.Lisnuy 9"}, {id:1, address:"вул. Дарбіняна 10"}],
-    orderHistory: [{id:0, totalPrice: 450, status: OrderStatus.Ordered}]
+    name:"",
+    phoneNumber:"",
+    address:[],
+    orderHistory: []
 };
 
 export const userSlice = createSlice({
@@ -39,7 +39,7 @@ export const userSlice = createSlice({
         },
 
         addOrderToHistory: (state, action) => {
-
+            state.orderHistory.push(action.payload);
         }
     },
 })

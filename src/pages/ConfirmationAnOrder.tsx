@@ -2,22 +2,21 @@ import {ProductPointInCartType} from "../types/productsType";
 import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
 import {decrementItemInCart, deleteAllItem, incrementItemInCart} from "../store/reducers/cartSlice";
 import React, {ReactElement, useEffect, useState} from "react";
-import ItemInCart from "../components/ItemInCart";
-import {NavLink, redirect} from "react-router-dom";
+import ItemInCart from "../components/Cart/ItemInCart";
+import {NavLink, redirect, Route, useNavigate} from "react-router-dom";
 import ItemInConfirmOrder from "../components/ItemInConfirmOrder";
 import {AddressType, UserType} from "../types/userType";
 import {createOrder} from "../store/actions/orderTypeBrige";
+import MainContent from "./MainContent";
+import {getUser} from "../store/actions/userRequests";
 
 const ConfirmationAnOrder = () => {
     const user : UserType = useAppSelector((store)=>store.user)
     const cart = useAppSelector((store) => store.cart);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const [address, setAddress] = useState("");
-
-    const onConfirmOrder = () => {
-        dispatch(createOrder(user.id, cart, address))
-    }
 
     const elementsInCart : ReactElement[] | any = cart.orderPoints.map((p)=>{
         return <ItemInConfirmOrder key={p.id} productInCart={p}/>
@@ -31,6 +30,15 @@ const ConfirmationAnOrder = () => {
             </li>
         )
     })
+
+    const onConfirmOrder = () => {
+        if(address == ""){return alert("Адреса не можу бути порожньою")}
+        else if(cart.orderPoints.length == 0){return alert("Ваша корзина порожня")}
+        else{
+            dispatch(createOrder(user.id, cart, address))
+            navigate("/maincontent");
+        }
+    }
 
     return(
         <div className="confirmationOrder">
@@ -49,7 +57,13 @@ const ConfirmationAnOrder = () => {
                 <h2>Оберіть адресу</h2>
                 <div className="chooseAddress">
                     <div className="inputAddress">
-                        <input type="text" defaultValue={address} onChange={(address)=>setAddress(address.target.value)} />
+                        <input
+                            required
+                            className=""
+                            type="text"
+                            defaultValue={address}
+                            onChange={(address)=>setAddress(address.target.value)}
+                        />
                         <button><img src={"/icon/geo.png"} width={30} /></button>
                     </div>
                     <div className="readyAddress">
@@ -63,11 +77,9 @@ const ConfirmationAnOrder = () => {
                     <p>Ім'я: {user.name}</p>
                     <p>Номер телефона: {user.phoneNumber}</p>
                 </div>
-                <NavLink to="/maincontent">
-                    <button id="confirmOrder" onClick={onConfirmOrder}>
-                        Підтвердити замовлення
-                    </button>
-                </NavLink>
+                <button id="confirmOrder" onClick={onConfirmOrder}>
+                    Підтвердити замовлення
+                </button>
             </div>
         </div>
     )

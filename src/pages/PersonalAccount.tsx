@@ -1,16 +1,18 @@
-import {useState} from "react";
-import AccountPageContent from "../components/AccountPageContent";
+import {useEffect, useState} from "react";
+import AccountPageContent from "../components/Account/AccountPageContent";
+import {useAppDispatch} from "../store/hooks/hooks";
+import {getUser} from "../store/actions/userRequests";
+import {endLoading, startLoading} from "../store/reducers/loading";
+import {AccountNavigation} from "../components/Account/AccountNavigation";
 
 const PersonalAccount = () => {
 
     const [activeTab, setActiveTab] = useState("myOrders");
+    const dispatch = useAppDispatch();
 
     return(
         <div className="account">
-            <ul className="accountNavigation">
-                <li onClick={()=>setActiveTab("myOrders")}>Мої замовлення</li>
-                <li onClick={()=>setActiveTab("contactInfo")}>Контактна інформація</li>
-            </ul>
+            <AccountNavigation setActiveTab={setActiveTab} />
             <AccountPageContent activeTab={activeTab} />
         </div>
     )

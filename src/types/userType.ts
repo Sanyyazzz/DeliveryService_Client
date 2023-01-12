@@ -13,12 +13,15 @@ export type AddressType = {
 
 export type Order = {
     id: number,
+    fromAddress: string,
+    toAddress: string,
     totalPrice: number,
-    status: OrderStatus
+    statusId: OrderStatus
 }
 
 export enum OrderStatus {
-    Complete,
-    OnWay,
-    Ordered
+    ".",
+    "Завершено",
+    "В дорозі",
+    "Замовлено"
 }

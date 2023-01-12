@@ -10,7 +10,7 @@ export const createOrder = (userId : number, cart : CartType, toAddress : string
             fromAddress: "Static Address",
             toAddress: toAddress,
             userId: 1,
-            statusId: 1
+            statusId: 3
         }
 
         dispatch(sendOrderToApi(order))

@@ -1,8 +1,8 @@
 import React, {ChangeEventHandler, useState} from "react";
-import {ProductPointInCartType} from "../types/productsType";
-import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
-import {AddressType, UserType} from "../types/userType";
-import {addAddressUser, deleteAddressUser, saveUser} from "../store/reducers/userSlice";
+import {ProductPointInCartType} from "../../types/productsType";
+import {useAppDispatch, useAppSelector} from "../../store/hooks/hooks";
+import {AddressType, UserType} from "../../types/userType";
+import {addAddressUser, deleteAddressUser, saveUser} from "../../store/reducers/userSlice";
 
 const AccountContactInfo = () => {
     const userInfo : UserType = useAppSelector((store) => store.user);
@@ -18,7 +18,7 @@ const AccountContactInfo = () => {
     const onChangeName = (e : React.FormEvent<HTMLInputElement>) => {setIsChangeInfo(true); setName(e.currentTarget.value);}
     const onChangePhone = (e : React.FormEvent<HTMLInputElement>) => {setIsChangeInfo(true); setPhoneNum(e.currentTarget.value);}
 
-    const deleteAddress = (a : AddressType) => {
+    const onDeleteAddress = (a : AddressType) => {
         dispatch(deleteAddressUser(a))
     }
 
@@ -44,7 +44,7 @@ const AccountContactInfo = () => {
         return(
             <li className="address" key={a.id}>
                 {a.address}
-                <button onClick={()=>deleteAddress(a)}>
+                <button onClick={()=>onDeleteAddress(a)}>
                     <img src={"/icon/free-icon-font-minus-small-4338830.png"} width={10} />
                 </button>
             </li>

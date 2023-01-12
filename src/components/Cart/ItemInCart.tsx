@@ -1,5 +1,5 @@
 import React from "react";
-import {ProductPointInCartType} from "../types/productsType";
+import {ProductPointInCartType} from "../../types/productsType";
 
 type PropsType = {
     productInCart : ProductPointInCartType,

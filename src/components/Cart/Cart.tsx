@@ -1,8 +1,8 @@
 import React, {ReactChild, ReactElement, useEffect} from "react";
-import {ProductsType, ProductPointInCartType} from "../types/productsType";
-import {useAppDispatch, useAppSelector} from "../store/hooks/hooks";
+import {ProductsType, ProductPointInCartType} from "../../types/productsType";
+import {useAppDispatch, useAppSelector} from "../../store/hooks/hooks";
 import ItemInCart from "./ItemInCart";
-import {decrementItemInCart, deleteAllItem, incrementItemInCart} from "../store/reducers/cartSlice";
+import {decrementItemInCart, deleteAllItem, incrementItemInCart} from "../../store/reducers/cartSlice";
 import {NavLink} from "react-router-dom";
 
 const Cart = () => {
