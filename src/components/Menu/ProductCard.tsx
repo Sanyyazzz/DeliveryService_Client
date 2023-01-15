@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {ProductsType} from "../../types/productsType";
 
 type PropsType = {
@@ -7,9 +7,14 @@ type PropsType = {
 }
 
 const ProductCard = (props : PropsType) => {
+    const [isFocus, setIsFocus] = useState("");
 
     return(
-        <div className="card">
+        <div
+            className={`card ${isFocus}`}
+            onMouseOver={(e)=>setIsFocus("focused")}
+            onMouseLeave={()=>setIsFocus("")}
+        >
             <div className="topPart">
                 <img src={props.product.image} />
             </div>

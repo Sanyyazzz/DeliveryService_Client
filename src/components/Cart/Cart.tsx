@@ -2,7 +2,7 @@ import React, {ReactChild, ReactElement, useEffect} from "react";
 import {ProductsType, ProductPointInCartType} from "../../types/productsType";
 import {useAppDispatch, useAppSelector} from "../../store/hooks/hooks";
 import ItemInCart from "./ItemInCart";
-import {decrementItemInCart, deleteAllItem, incrementItemInCart} from "../../store/reducers/cartSlice";
+import {decrementItemInCart, deleteAllItem, hideCartTab, incrementItemInCart} from "../../store/reducers/cartSlice";
 import {NavLink} from "react-router-dom";
 
 const Cart = () => {
@@ -30,7 +30,7 @@ const Cart = () => {
             <div>
                 <div className="topCart">
                     <h3>Ваше замовлення</h3>
-                    <button onClick={()=>dispatch(deleteAllItem())}>DeleteAll</button>
+                    <button onClick={()=>dispatch(deleteAllItem())}>Видалити</button>
                 </div>
                 <ul>
                     {elementsInCart}
@@ -41,7 +41,7 @@ const Cart = () => {
             <div className="bottomCart">
                 <div>Всього до сплати: <b>{cartState.totalPrice.toFixed(2)}</b></div>
                 <NavLink to="/confirmation">
-                    <button onClick={()=>{}}>Замовити</button>
+                    <button onClick={()=>{dispatch(hideCartTab())}}>Замовити</button>
                 </NavLink>
             </div> : <div></div>
             }

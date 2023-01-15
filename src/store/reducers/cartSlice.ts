@@ -53,7 +53,9 @@ export const cartSlice = createSlice({
             state.totalPrice = countTotalPrice(state.orderPoints);
         },
 
-        showHideCartTab: (state) => {state.isOpenTabCart = !state.isOpenTabCart}
+        showHideCartTab: (state) => {state.isOpenTabCart = !state.isOpenTabCart},
+
+        hideCartTab: (state) => {state.isOpenTabCart = false}
     },
 })
 
@@ -64,6 +66,6 @@ const countTotalPrice = (orderPoints: ProductPointInCartType[]) => {
 }
 
 // Action creators are generated for each case reducer function
-export const { addItemToCart, incrementItemInCart, decrementItemInCart, deleteAllItem, deleteItem, showHideCartTab } = cartSlice.actions
+export const { addItemToCart, incrementItemInCart, decrementItemInCart, deleteAllItem, deleteItem, showHideCartTab, hideCartTab } = cartSlice.actions
 
 export default cartSlice.reducer
