@@ -1,5 +1,7 @@
 import {OrderStatus, UserType} from "../types/userType";
 import {useEffect} from "react";
+import {useAppDispatch} from "../store/hooks/hooks";
+import {cancelOrderToApi} from "../store/actions/orderRequest";
 
 type PropsType = {
     user: UserType
@@ -7,9 +9,12 @@ type PropsType = {
 
 export const OrderHistory = ({user} : PropsType) => {
 
-    const ordersHistory = user.orderHistory.map((h)=>{
-        let cancelButton = h.statusId == 3
-            ? <button id="cancel">Скасувати замовлення</button>
+    const dispatch = useAppDispatch()
+
+    const ordersHistory = user?.orderHistory.map((h)=>{
+        let cancelButton =
+            h.statusId == 3
+            ? <button id="cancel" onClick={()=>onCancelOrder(h.id)}>Скасувати замовлення</button>
             : "";
 
         return(
@@ -25,6 +30,10 @@ export const OrderHistory = ({user} : PropsType) => {
             </tr>
         )
     })
+
+    const onCancelOrder = (id: number) => {
+        dispatch(cancelOrderToApi(id))
+    }
 
     useEffect(()=>{
 

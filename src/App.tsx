@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './index.scss';
 import Header from "./components/Header";
 import MainContent from "./pages/MainContent";
@@ -20,7 +20,7 @@ function App() {
         <Header />
         <div onClick={()=>dispatch(hideCartTab())}>
             <Routes>
-                <Route path="/" element={<WelcomePage/>}/>
+                <Route path="/" element={<WelcomePage/>} />
                 <Route path="/maincontent" element={<MainContent />}/>
                 <Route path="/account" element={<PersonalAccount />}/>
                 <Route path="/confirmation" element={<ConfirmationAnOrder />}/>

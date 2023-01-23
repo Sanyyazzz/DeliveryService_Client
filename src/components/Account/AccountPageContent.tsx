@@ -1,9 +1,6 @@
 import {ReactElement, useEffect} from "react";
 import AccountOrdersList from "./AccountOrdersList";
 import AccountContactInfo from "./AccountContactInfo";
-import {useAppDispatch} from "../../store/hooks/hooks";
-import {getUser} from "../../store/actions/userRequests";
-import {endLoading, startLoading} from "../../store/reducers/loading";
 
 type PropsAccountPage = {
     activeTab: string;

@@ -2,7 +2,13 @@ import React, {ReactChild, ReactElement, useEffect} from "react";
 import {ProductsType, ProductPointInCartType} from "../../types/productsType";
 import {useAppDispatch, useAppSelector} from "../../store/hooks/hooks";
 import ItemInCart from "./ItemInCart";
-import {decrementItemInCart, deleteAllItem, hideCartTab, incrementItemInCart} from "../../store/reducers/cartSlice";
+import {
+    decrementItemInCart,
+    deleteAllItem,
+    hideCartTab,
+    incrementItemInCart,
+    setCartFromLocalStorage
+} from "../../store/reducers/cartSlice";
 import {NavLink} from "react-router-dom";
 
 const Cart = () => {
@@ -21,9 +27,14 @@ const Cart = () => {
         return <ItemInCart key={p.id} productInCart={p} decrement={decrementItem} increment={incrementItem} />
     })
 
-    useEffect(()=>{
+    const onSetCartFromLocalStorage = () => {
+        let data = localStorage.getItem("cart")
+        data && dispatch(setCartFromLocalStorage(data));
+    }
 
-    })
+    useEffect(()=>{
+        onSetCartFromLocalStorage()
+    }, [])
 
     return(
         <div className={`cart `+`${cartState.isOpenTabCart && "cartOpen"}`}>

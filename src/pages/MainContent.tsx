@@ -12,7 +12,6 @@ const MainContent = () => {
 
     useEffect(()=>{
         dispatch(getProductByCategory(selectedCategory))
-        dispatch(getUser(1)) //static userId
     }, [selectedCategory])
 
     return(

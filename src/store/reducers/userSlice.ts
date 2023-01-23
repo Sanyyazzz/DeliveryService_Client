@@ -1,13 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {AddressType, OrderStatus, UserType} from "../../types/userType";
+import {AddressType, Order, OrderStatus, UserType} from "../../types/userType";
 
-const initialState : UserType = {
-    id:0,
-    name:"",
-    phoneNumber:"",
-    address:[],
-    orderHistory: []
-};
+const initialState : UserType | any = null;
 
 export const userSlice = createSlice({
     name: 'user',
@@ -24,7 +18,7 @@ export const userSlice = createSlice({
 
         addAddressUser: (state, action: PayloadAction<string>) => {
             let maxId = 0;
-            state.address.forEach((p)=>{
+            state.address.forEach((p : AddressType)=>{
                 if(p.id > maxId){
                     maxId = p.id;
                     maxId++;
@@ -34,17 +28,22 @@ export const userSlice = createSlice({
         },
 
         deleteAddressUser: (state, action: PayloadAction<AddressType>) => {
-            let index = state.address.findIndex((p)=>p.id == action.payload.id)
+            let index = state.address.findIndex((p : AddressType)=>p.id == action.payload.id)
             state.address.splice(index, 1)
         },
 
         addOrderToHistory: (state, action) => {
             state.orderHistory.push(action.payload);
+        },
+
+        cancelOrder: (state, action) => {
+            let index = state.orderHistory.findIndex((p : Order)=>p.id == action.payload)
+            state.orderHistory.splice(index, 1);
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setUser, addAddressUser, deleteAddressUser, saveUser, addOrderToHistory } = userSlice.actions
+export const { setUser, addAddressUser, deleteAddressUser, saveUser, addOrderToHistory, cancelOrder } = userSlice.actions
 
 export default userSlice.reducer

@@ -22,67 +22,78 @@ const ConfirmationAnOrder = () => {
         return <ItemInConfirmOrder key={p.id} productInCart={p}/>
     })
 
-    const addressInProfile = user.address.map((a)=>{
-        return(
-            <li key={a.id}>
-                {a.address}
-                <button onClick={()=>setAddress(a.address)}>Обрати</button>
-            </li>
-        )
-    })
-
     const onConfirmOrder = () => {
-        if(address == ""){return alert("Адреса не можу бути порожньою")}
-        else if(cart.orderPoints.length == 0){return alert("Ваша корзина порожня")}
+        if(address == ""){
+            return alert("Адреса не можу бути порожньою")
+        }
+        else if(cart.orderPoints.length == 0){
+            return alert("Ваша корзина порожня")
+        }
         else{
             dispatch(createOrder(user.id, cart, address))
-            navigate("/maincontent");
         }
     }
 
-    return(
-        <div className="confirmationOrder">
-            <div className="contentConf">
-                <NavLink to={"/maincontent"}>
-                    <div className="return">
-                        <img src={"/icon/free-icon-left-arrow-137518.png"} width={20} />
-                        До покупок
+    useEffect(()=>{
+        if(!user) dispatch(getUser(1)) //TODO: if user==null go to login page
+    },[])
+
+    if(user){
+        const addressInProfile = user.address.map((a)=>{
+            return(
+                <li key={a.id}>
+                    {a.address}
+                    <button onClick={()=>setAddress(a.address)}>Обрати</button>
+                </li>
+            )
+        })
+
+        return(
+            <div className="confirmationOrder">
+                <div className="contentConf">
+                    <NavLink to={"/maincontent"}>
+                        <div className="return">
+                            <img src={"/icon/free-icon-left-arrow-137518.png"} width={20} />
+                            До покупок
+                        </div>
+                    </NavLink>
+                    <h2>Ваше замовлення</h2>
+                    <ul className="list">
+                        {elementsInCart}
+                    </ul>
+                    <div id="price">Всього до сплати: <b>{cart.totalPrice} грн.</b></div>
+                    <h2>Оберіть адресу</h2>
+                    <div className="chooseAddress">
+                        <div className="inputAddress">
+                            <input
+                                required
+                                className=""
+                                type="text"
+                                defaultValue={address}
+                                onChange={(address)=>setAddress(address.target.value)}
+                            />
+                            <button><img src={"/icon/geo.png"} width={30} /></button>
+                        </div>
+                        <div className="readyAddress">
+                            <ul>
+                                {addressInProfile}
+                            </ul>
+                        </div>
                     </div>
-                </NavLink>
-                <h2>Ваше замовлення</h2>
-                <ul className="list">
-                    {elementsInCart}
-                </ul>
-                <div id="price">Всього до сплати: <b>{cart.totalPrice} грн.</b></div>
-                <h2>Оберіть адресу</h2>
-                <div className="chooseAddress">
-                    <div className="inputAddress">
-                        <input
-                            required
-                            className=""
-                            type="text"
-                            defaultValue={address}
-                            onChange={(address)=>setAddress(address.target.value)}
-                        />
-                        <button><img src={"/icon/geo.png"} width={30} /></button>
+                    <h2>Контактна інформація</h2>
+                    <div className="contactInfo">
+                        <p>Ім'я: {user.name}</p>
+                        <p>Номер телефона: {user.phoneNumber}</p>
                     </div>
-                    <div className="readyAddress">
-                        <ul>
-                            {addressInProfile}
-                        </ul>
-                    </div>
+                    <button id="confirmOrder" onClick={onConfirmOrder}>
+                        Підтвердити замовлення
+                    </button>
                 </div>
-                <h2>Контактна інформація</h2>
-                <div className="contactInfo">
-                    <p>Ім'я: {user.name}</p>
-                    <p>Номер телефона: {user.phoneNumber}</p>
-                </div>
-                <button id="confirmOrder" onClick={onConfirmOrder}>
-                    Підтвердити замовлення
-                </button>
             </div>
-        </div>
-    )
+        )
+    }else{
+        return <></>
+    }
 }
 
 export default ConfirmationAnOrder

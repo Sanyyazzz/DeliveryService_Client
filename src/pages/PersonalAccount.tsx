@@ -10,6 +10,10 @@ const PersonalAccount = () => {
     const [activeTab, setActiveTab] = useState("myOrders");
     const dispatch = useAppDispatch();
 
+    useEffect(()=>{
+        dispatch(getUser(1)) //TODO: static userId
+    }, [])
+
     return(
         <div className="account">
             <AccountNavigation setActiveTab={setActiveTab} />

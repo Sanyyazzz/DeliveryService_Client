@@ -22,12 +22,16 @@ export const cartSlice = createSlice({
             })
             if(!isItemInCart) state.orderPoints.push({id:action.payload.id, product:action.payload, count:1})
             state.totalPrice = countTotalPrice(state.orderPoints);
+
+            localStorage.setItem("cart", JSON.stringify(state.orderPoints));
         },
 
         incrementItemInCart: (state,action:PayloadAction<ProductPointInCartType>) => {
             let index = state.orderPoints.findIndex((p)=>p.id == action.payload.id);
             state.orderPoints[index].count++;
             state.totalPrice = countTotalPrice(state.orderPoints);
+
+            localStorage.setItem("cart", JSON.stringify(state.orderPoints));
         },
 
         decrementItemInCart: (state,action:PayloadAction<ProductPointInCartType>) => {
@@ -39,11 +43,15 @@ export const cartSlice = createSlice({
             };
 
             state.totalPrice = countTotalPrice(state.orderPoints);
+
+            localStorage.setItem("cart", JSON.stringify(state.orderPoints));
         },
 
         deleteAllItem: (state) => {
             state.orderPoints = [];
             state.totalPrice = 0;
+
+            localStorage.setItem("cart", "");
         },
 
         deleteItem: (state,action:PayloadAction<ProductPointInCartType>) => {
@@ -51,11 +59,18 @@ export const cartSlice = createSlice({
             let price = state.orderPoints[index].count * state.orderPoints[index].product.price;
             state.orderPoints.splice(index, 1);
             state.totalPrice = countTotalPrice(state.orderPoints);
+
+            localStorage.setItem("cart", JSON.stringify(state.orderPoints));
         },
 
         showHideCartTab: (state) => {state.isOpenTabCart = !state.isOpenTabCart},
 
-        hideCartTab: (state) => {state.isOpenTabCart = false}
+        hideCartTab: (state) => {state.isOpenTabCart = false},
+
+        setCartFromLocalStorage: (state, action:PayloadAction<string>) => {
+            state.orderPoints = JSON.parse(action.payload);
+            state.totalPrice = countTotalPrice(state.orderPoints);
+        },
     },
 })
 
@@ -66,6 +81,15 @@ const countTotalPrice = (orderPoints: ProductPointInCartType[]) => {
 }
 
 // Action creators are generated for each case reducer function
-export const { addItemToCart, incrementItemInCart, decrementItemInCart, deleteAllItem, deleteItem, showHideCartTab, hideCartTab } = cartSlice.actions
+export const {
+    addItemToCart,
+    incrementItemInCart,
+    decrementItemInCart,
+    deleteAllItem,
+    deleteItem,
+    showHideCartTab,
+    hideCartTab,
+    setCartFromLocalStorage
+} = cartSlice.actions
 
 export default cartSlice.reducer
